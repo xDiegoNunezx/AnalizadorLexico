@@ -55,8 +55,6 @@ int agregar_lista_tokens(ListaTokens *lt, Token *nuevoToken){
     lt->tail = nuevoNodo;
 }
 
-
-
 int nuevo_token_pal_res(ListaTokens* lt, char * pal){
     if(lt == NULL){
         return -1;
@@ -100,8 +98,6 @@ int nuevo_token_real(ListaTokens *lt, TablaReales *tr, char *num){
 
 }
 
-
-
 int busquedaBinaria(const char *array, int l, int r, char *objetivo){
     if(l > r){
         return -1;
@@ -116,4 +112,79 @@ int busquedaBinaria(const char *array, int l, int r, char *objetivo){
     }else{
         return busquedaBinaria(array, l, m - 1, objetivo);
     }
+}
+
+int nuevo_token_cadena(ListaTokens* lt, Tabla *tc,char *cadena) {
+    if(lt == NULL){
+        return -1;
+    }
+
+    int pos = insertar_tabla(tc,cadena);
+
+    if(pos == -1){
+        return -1;
+    }
+
+    Token *nuevoToken = nuevo_Token(4, pos);
+    agregar_lista_tokens(lt, nuevoToken);
+
+    return 0;
+}
+
+
+int nuevo_token_simbolo(ListaTokens *lt, char simbolo){
+    Token *nuevoToken = nuevo_Token(5, simbolo);
+    agregar_lista_tokens(lt, nuevoToken);
+}
+
+int nuevo_token_operadorA(ListaTokens *lt, char *cadena){
+    if(lt == NULL){
+        return -1;
+    }
+    char *TablaOperadoresA[7] = {"+","-","*","/",37,"\\","^"};
+    int pos = -1;
+    for (int i = 0; i < 6; i++){
+        if(strcmp(TablaOperadoresA[i], cadena) == 0){
+            pos = i;
+            break;
+        }
+    }
+
+    if(pos == -1){
+        return -1;
+    }
+
+    Token *nuevoToken = nuevo_Token(6, pos);
+    agregar_lista_tokens(lt, nuevoToken);
+
+    return 0;
+    
+}
+
+int nuevo_token_operadorR(ListaTokens *lt, char *cadena){
+    if(lt == NULL){
+        return -1;
+    }
+    char *TablaOperadoresR[6] = {"<",">","<=",">=","==","!="};
+    int pos = -1;
+    for (int i = 0; i < 6; i++){
+        if(strcmp(TablaOperadoresR[i], cadena) == 0){
+            pos = i;
+            break;
+        }
+    }
+
+    if(pos == -1){
+        return -1;
+    }
+
+    Token *nuevoToken = nuevo_Token(7, pos);
+    agregar_lista_tokens(lt, nuevoToken);
+
+    return 0;   
+}
+
+int nuevo_token_asignacion(ListaTokens *lt){
+    Token *nuevoToken = nuevo_Token(8, '=');
+    agregar_lista_tokens(lt, nuevoToken);
 }

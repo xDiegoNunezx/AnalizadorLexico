@@ -9,6 +9,7 @@ FILE *archSal;
 TablaReales *tablaR;
 TablaCadenas *tablaC;
 TablaIdentificadores *tablaI;
+
 void realEncontrado(char *cadena, int tam);
 void cadenaEncontrada(char *cadena, int tam);
 void identificadorEncontrado(char *cadena);
@@ -38,7 +39,7 @@ opAsig          =
 {decimal}       fprintf(archSal,"decimal %s\n",yytext);
 {octal}         fprintf(archSal,"octal %s\n",yytext);
 {cadena}        cadenaEncontrada(yytext, yyleng);
-{simEsp}        fprintf(archSal,"%s es un simbolo especial\n", yytext);
+{simEsp}        simboloEncontrado(yytex)
 {operArit}      fprintf(archSal,"%s es un operador aritmetico\n", yytext);
 {opRel}         fprintf(archSal,"%s es un operador relacional\n", yytext);
 {opAsig}        fprintf(archSal,"%s es un operador de asignacion\n", yytext);
@@ -56,19 +57,3 @@ int analizadorLexico(char* archivoEntrada, TablaReales *tr, TablaCadenas *tc, Ta
         yylex();
         fclose(archSal);
 }
-
-void realEncontrado(char *cadena, int tam){
-        fprintf(archSal,"%s es un real\n", yytext);
-        insertar_tabla(tablaR, yytext);
-}
-
-void cadenaEncontrada(char *cadena, int tam){
-        fprintf(archSal,"%s es una cadena con tamanio %d \n", yytext, yyleng);
-        insertar_tabla(tablaC, yytext);
-}
-
-void identificadorEncontrado(char *cadena){
-        fprintf(archSal,"%s es un identificador\n", cadena);
-        insertar_tabla_identificadores(tablaI, cadena);
-}
-
