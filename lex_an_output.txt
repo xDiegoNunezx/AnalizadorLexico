@@ -1,41 +1,4 @@
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-"owhfwe \n iuwehde" es una cadena con tamanio 19 
-0.45 es un real
-$hola es un identificador
-$perro es un identificador
-$gato es un identificador
-$computadora es un identificador
-$hola es un identificador
+m es un error, no se reconoce
+a es un error, no se reconoce
+i es un error, no se reconoce
+n es un error, no se reconoce

@@ -521,6 +521,7 @@ char *yytext;
 #include <stdio.h>
 #include <stdlib.h>
 #include "tablas.h"
+#include "tokens.h"
 /* Programa que lee un programa y hace elreconocimiento de identificadores, 
 palabras reservadas y enteros de un lenguaje x
 */
@@ -528,11 +529,13 @@ FILE *archSal;
 TablaReales *tablaR;
 TablaCadenas *tablaC;
 TablaIdentificadores *tablaI;
+ListaTokens *listaT;
+
 void realEncontrado(char *cadena, int tam);
 void cadenaEncontrada(char *cadena, int tam);
 void identificadorEncontrado(char *cadena);
-#line 535 "lex.yy.c"
-#line 536 "lex.yy.c"
+#line 538 "lex.yy.c"
+#line 539 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -749,9 +752,9 @@ YY_DECL
 		}
 
 	{
-#line 32 "analizadorLexico.l"
+#line 35 "analizadorLexico.l"
 
-#line 755 "lex.yy.c"
+#line 758 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -810,76 +813,76 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 33 "analizadorLexico.l"
+#line 36 "analizadorLexico.l"
 
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 34 "analizadorLexico.l"
+#line 37 "analizadorLexico.l"
 
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 35 "analizadorLexico.l"
-fprintf(archSal,"%s es unapalabra reservada\n", yytext);
+#line 38 "analizadorLexico.l"
+nuevo_token_pal_res(listaT, yytext);        
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 36 "analizadorLexico.l"
-identificadorEncontrado(yytext);
+#line 39 "analizadorLexico.l"
+nuevo_token_ident(listaT, tablaI, yytext);
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 37 "analizadorLexico.l"
-realEncontrado(yytext, yyleng);
+#line 40 "analizadorLexico.l"
+nuevo_token_real(listaT, tablaR, yytext);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 38 "analizadorLexico.l"
-fprintf(archSal,"decimal %s\n",yytext);
+#line 41 "analizadorLexico.l"
+nuevo_token_decimal(listaT, yytext);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 39 "analizadorLexico.l"
-fprintf(archSal,"octal %s\n",yytext);
+#line 42 "analizadorLexico.l"
+nuevo_token_octal(listaT, yytext);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 40 "analizadorLexico.l"
-cadenaEncontrada(yytext, yyleng);
+#line 43 "analizadorLexico.l"
+nuevo_token_cadena(listaT, tablaC, yytext);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 41 "analizadorLexico.l"
-fprintf(archSal,"%s es un simbolo especial\n", yytext);
+#line 44 "analizadorLexico.l"
+nuevo_token_simbolo(listaT, yytext);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 42 "analizadorLexico.l"
-fprintf(archSal,"%s es un operador aritmetico\n", yytext);
+#line 45 "analizadorLexico.l"
+nuevo_token_operadorA(listaT, yytext);
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 43 "analizadorLexico.l"
-fprintf(archSal,"%s es un operador relacional\n", yytext);
+#line 46 "analizadorLexico.l"
+nuevo_token_operadorR(listaT, yytext);
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 44 "analizadorLexico.l"
-fprintf(archSal,"%s es un operador de asignacion\n", yytext);
+#line 47 "analizadorLexico.l"
+nuevo_token_asignacion(listaT);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 45 "analizadorLexico.l"
+#line 48 "analizadorLexico.l"
 fprintf(archSal,"%s es un error, no se reconoce\n", yytext);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 46 "analizadorLexico.l"
+#line 49 "analizadorLexico.l"
 ECHO;
 	YY_BREAK
-#line 883 "lex.yy.c"
+#line 886 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1884,34 +1887,19 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 46 "analizadorLexico.l"
+#line 49 "analizadorLexico.l"
 
 
 
 
-int analizadorLexico(char* archivoEntrada, TablaReales *tr, TablaCadenas *tc, TablaIdentificadores *ti){
+int analizadorLexico(char* archivoEntrada, TablaReales *tr, TablaCadenas *tc, TablaIdentificadores *ti, ListaTokens *lt){
         yyin = fopen(archivoEntrada,"r");
         archSal = fopen("lex_an_output.txt","w");
         tablaR = tr;
         tablaC = tc;
         tablaI = ti;
+        listaT = lt;
         yylex();
         fclose(archSal);
 }
-
-void realEncontrado(char *cadena, int tam){
-        fprintf(archSal,"%s es un real\n", yytext);
-        insertar_tabla(tablaR, yytext);
-}
-
-void cadenaEncontrada(char *cadena, int tam){
-        fprintf(archSal,"%s es una cadena con tamanio %d \n", yytext, yyleng);
-        insertar_tabla(tablaC, yytext);
-}
-
-void identificadorEncontrado(char *cadena){
-        fprintf(archSal,"%s es un identificador\n", cadena);
-        insertar_tabla_identificadores(tablaI, cadena);
-}
-
 

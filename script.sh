@@ -1,4 +1,5 @@
 #! /bin/bash
+clear
 flex analizadorLexico.l
-gcc lex.yy.c tablas.c main.c -lfl
+gcc *.c -g -lfl -lm
 ./a.out prueba.u

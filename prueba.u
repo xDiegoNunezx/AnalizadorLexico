@@ -1,41 +1,27 @@
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-"owhfwe \n iuwehde"
-0.45
-$hola
-$perro
-$gato
-$computadora
-$hola
+number main(){
+    number $a = 1;
+    real $b = 2.0;
+    symbol $c = '3';
+    o653 O653
+    repeat(number $i = 0; $i < 10; $i++){
+        step;
+    }
+
+    evaluate($a == $b){
+        big $d = 4;
+        symbol $e = '5';
+
+    }instead{
+        large $d = 6;
+        symbol $e = '7';
+        make{
+            number $f = 8;
+            symbol $g = '9';
+        }loop($a < $b $c == $d $e != $f){
+            step;
+        }
+    }
+
+    throw 0;
+
+}

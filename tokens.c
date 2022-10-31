@@ -1,7 +1,22 @@
-#include "tokens.h"
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <tablas.h>
+#include <math.h>
+#include "tokens.h"
+#include "tablas.h"
+
+const char *palabrasReservadas[17] = {"alternative", "big", "evaluate",
+        "instead", "large", "loop", "make", "number", "other", "real",
+        "repeat", "select", "small", "step", "stop", "symbol", "throw"};
+
+const char *TablaOperadoresA[7] = {"+","-","*","/","%","\\","^"};
+
+const char *TablaOperadoresR[6] = {"<",">","<=",">=","==","!="};
+
+
+
+int busquedaBinaria(const char **array, int l, int r, char *objetivo);
+int octaltodecimal(int octal);
 
 Token *nuevo_Token(int clase, int valor){
     Token *nuevoToken = (Token*)malloc(sizeof(Token));
@@ -48,6 +63,8 @@ int agregar_lista_tokens(ListaTokens *lt, Token *nuevoToken){
 
     if(lt->head == NULL){
         lt->head = nuevoNodo;
+        lt->tail = nuevoNodo;
+        return 0;
     }
 
     lt->tail->next = nuevoNodo;
@@ -59,12 +76,7 @@ int nuevo_token_pal_res(ListaTokens* lt, char * pal){
     if(lt == NULL){
         return -1;
     }
-    const char *palabrasReservadas[17] = {"alternative", "big", "evaluate",
-        "instead", "large", "loop", "make", "number", "other", "real",
-        "repeat", "select", "small", "step", "stop", "symbol", "throw"};
-
     int res = busquedaBinaria(palabrasReservadas, 0, 16, pal);
-
     if(res == -1){
         return -1;
     }
@@ -112,7 +124,7 @@ int nuevo_token_decimal(ListaTokens *lt, char *num){
 }
 
 int nuevo_token_octal(ListaTokens *lt, char *num){
-    int numLimpio = num + 1;
+    char *numLimpio = num + 1;
     int n = atoi(numLimpio);
     int valorDecimal = octaltodecimal(n);
 
@@ -123,29 +135,13 @@ int nuevo_token_octal(ListaTokens *lt, char *num){
 
 void imprimir_lista_tokens(ListaTokens *lt){
     NodoToken *nodoActual = lt -> head;
-    printf("clase   |   valor");
+    printf("clase   |   valor \n");
     while(nodoActual){
-        printf("%d,   %d", nodoActual->info->clase, nodoActual->info->valor);
+        printf("%d,   %d \n", nodoActual->info->clase, nodoActual->info->valor);
         nodoActual = nodoActual->next;
     }
 }
 
-
-int busquedaBinaria(const char *array, int l, int r, char *objetivo){
-    if(l > r){
-        return -1;
-    }
-
-    int m = (l + r)/2;
-    int valCmp = strcmp(array[m], objetivo);
-    if(valCmp == 0){
-        return m;
-    }else if(valCmp < 1){
-        return busquedaBinaria(array, m + 1, r, objetivo);
-    }else{
-        return busquedaBinaria(array, l, m - 1, objetivo);
-    }
-}
 
 int nuevo_token_cadena(ListaTokens* lt, Tabla *tc,char *cadena) {
     if(lt == NULL){
@@ -165,8 +161,8 @@ int nuevo_token_cadena(ListaTokens* lt, Tabla *tc,char *cadena) {
 }
 
 
-int nuevo_token_simbolo(ListaTokens *lt, char simbolo){
-    Token *nuevoToken = nuevo_Token(5, simbolo);
+int nuevo_token_simbolo(ListaTokens *lt, char *simbolo){
+    Token *nuevoToken = nuevo_Token(5, *simbolo);
     agregar_lista_tokens(lt, nuevoToken);
 }
 
@@ -174,7 +170,7 @@ int nuevo_token_operadorA(ListaTokens *lt, char *cadena){
     if(lt == NULL){
         return -1;
     }
-    char *TablaOperadoresA[7] = {"+","-","*","/",37,"\\","^"};
+
     int pos = -1;
     for (int i = 0; i < 6; i++){
         if(strcmp(TablaOperadoresA[i], cadena) == 0){
@@ -198,7 +194,7 @@ int nuevo_token_operadorR(ListaTokens *lt, char *cadena){
     if(lt == NULL){
         return -1;
     }
-    char *TablaOperadoresR[6] = {"<",">","<=",">=","==","!="};
+    
     int pos = -1;
     for (int i = 0; i < 6; i++){
         if(strcmp(TablaOperadoresR[i], cadena) == 0){
@@ -221,8 +217,7 @@ int nuevo_token_asignacion(ListaTokens *lt){
     Token *nuevoToken = nuevo_Token(8, '=');
     agregar_lista_tokens(lt, nuevoToken);
 }
-int octaltodecimal(int octal)
-{
+int octaltodecimal(int octal){
     int decimalnumber = 0, i = 0;
   
     // while loop executes the statements until the
@@ -236,6 +231,22 @@ int octaltodecimal(int octal)
     }
     // printing the result
     return decimalnumber;
+}
+
+int busquedaBinaria(const char **array, int l, int r, char *objetivo){
+    if(l > r){
+        return -1;
+    }
+
+    int m = (l + r)/2;
+    int valCmp = strcmp(array[m], objetivo);
+    if(valCmp == 0){
+        return m;
+    }else if(valCmp < 1){
+        return busquedaBinaria(array, m + 1, r, objetivo);
+    }else{
+        return busquedaBinaria(array, l, m - 1, objetivo);
+    }
 }
 
 

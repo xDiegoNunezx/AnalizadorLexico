@@ -1,6 +1,8 @@
 #ifndef TABLAS_H
 #define TABLAS_H
 
+
+
 typedef struct Tabla{
     int tamanio;
     int capacidad;
