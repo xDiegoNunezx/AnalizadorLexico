@@ -123,7 +123,14 @@ int nuevo_token_octal(ListaTokens *lt, char *num){
     return 0;
 }
 
-
+void imprimir_lista_tokens(ListaTokens *lt){
+    NodoToken *nodoActual = lt -> head;
+    printf("clase   |   valor");
+    while(nodoActual){
+        printf("%d,   %d", nodoActual->info->clase, nodoActual->info->valor);
+        nodoActual = nodoActual->next;
+    }
+}
 
 
 int busquedaBinaria(const char *array, int l, int r, char *objetivo){
@@ -158,4 +165,5 @@ int octaltodecimal(int octal)
     // printing the result
     return decimalnumber;
 }
+
 
