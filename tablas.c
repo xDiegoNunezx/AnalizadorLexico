@@ -53,7 +53,7 @@ int insertar_tabla(Tabla *t, char* cadena){
     char **arregloCadenas = t->arreglo;
     arregloCadenas[t->tamanio] = nuevaCadena;
     t->tamanio++;
-    return 0;
+    return t->tamanio - 1;
 }
 
 void imprimir_tabla(Tabla *t){
