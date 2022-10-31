@@ -95,10 +95,34 @@ int nuevo_token_real(ListaTokens *lt, TablaReales *tr, char *num){
     if(lt == NULL || tr == NULL || num == NULL){
         return -1;
     }
+    int pos = insertar_tabla(tr, num);
 
-    
+    if(pos == -1){
+        return -1;
+    }
 
+    Token *nuevoToken = nuevo_Token(3, pos);
+    agregar_lista_tokens(lt, nuevoToken);
+    return 0;
 }
+
+int nuevo_token_decimal(ListaTokens *lt, char *num){
+    int n = atoi(num);
+    Token *nuevoToken = nuevo_Token(2, n);
+    agregar_lista_tokens(lt, nuevoToken);
+    return 0;
+}
+
+int nuevo_token_octal(ListaTokens *lt, char *num){
+    int numLimpio = num + 1;
+    int n = atoi(numLimpio);
+    int valorDecimal = octaltodecimal(n);
+
+    Token *nuevoToken = nuevo_Token(2, valorDecimal);
+    agregar_lista_tokens(lt, nuevoToken);
+    return 0;
+}
+
 
 
 
@@ -117,3 +141,21 @@ int busquedaBinaria(const char *array, int l, int r, char *objetivo){
         return busquedaBinaria(array, l, m - 1, objetivo);
     }
 }
+
+int octaltodecimal(int octal)
+{
+    int decimalnumber = 0, i = 0;
+  
+    // while loop executes the statements until the
+    // condition is false
+    while (octal != 0) {
+        // calculating equivalent decimal number for the
+        // given octal number
+        decimalnumber
+            = decimalnumber + (octal % 10) * pow(8, i++);
+        octal = octal / 10;
+    }
+    // printing the result
+    return decimalnumber;
+}
+
