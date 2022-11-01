@@ -3,16 +3,9 @@
         {
             "type": "cppbuild",
             "label": "C/C++: gcc-9 compilar archivo activo",
-            "command": "/usr/bin/gcc-9",
+            "command": "/usr/bin/make",
             "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "-lfl",
-                "*.c",
-                "-lm",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "all"
             ],
             "options": {
                 "cwd": "${fileDirname}"

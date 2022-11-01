@@ -70,6 +70,7 @@ int agregar_lista_tokens(ListaTokens *lt, Token *nuevoToken){
     lt->tail->next = nuevoNodo;
     nuevoNodo->prev = lt->tail;
     lt->tail = nuevoNodo;
+    return 0;
 }
 
 int nuevo_token_pal_res(ListaTokens* lt, char * pal){
@@ -165,6 +166,7 @@ int nuevo_token_cadena(ListaTokens* lt, Tabla *tc,char *cadena) {
 int nuevo_token_simbolo(ListaTokens *lt, char *simbolo){
     Token *nuevoToken = nuevo_Token(5, *simbolo);
     agregar_lista_tokens(lt, nuevoToken);
+    return 0;
 }
 
 int nuevo_token_operadorA(ListaTokens *lt, char *cadena){
@@ -217,6 +219,7 @@ int nuevo_token_operadorR(ListaTokens *lt, char *cadena){
 int nuevo_token_asignacion(ListaTokens *lt){
     Token *nuevoToken = nuevo_Token(8, '=');
     agregar_lista_tokens(lt, nuevoToken);
+    return 0;
 }
 int octaltodecimal(int octal){
     int decimalnumber = 0, i = 0;

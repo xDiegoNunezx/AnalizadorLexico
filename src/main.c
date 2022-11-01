@@ -10,6 +10,9 @@ int main(int argc, char *argv[]){
     archivoSalida = freopen("tablas-generadas.txt","a",archivoSalida);
     if(argc > 1){
         archivoEntrada = fopen(argv[1], "r");
+        if(archivoEntrada == NULL){
+            return -1;
+        }
     }else{
         return 1;
     }

@@ -14,7 +14,7 @@ Tabla *nueva_tabla(){
 
     char **nuevoArreglo = (char**)malloc(sizeof(char*) * CAPACIDAD_INICIAL);
     for(int i = 0; i < CAPACIDAD_INICIAL; i++){
-        nuevoArreglo[i] = 0;
+        nuevoArreglo[i] = NULL;
     }
     
     nuevaTabla -> arreglo = nuevoArreglo;
@@ -77,7 +77,7 @@ TablaIdentificadores *nueva_tabla_indentificadores(){
 
     Identificador *nuevoArreglo = (Identificador*)malloc(sizeof(Identificador) * CAPACIDAD_INICIAL);
     for(int i = 0; i < CAPACIDAD_INICIAL; i++){
-        nuevoArreglo[i].nombre = 0;
+        nuevoArreglo[i].nombre = NULL;
         nuevoArreglo[i].tipo = -1;
     }
     

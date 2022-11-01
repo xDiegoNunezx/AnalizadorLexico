@@ -1904,9 +1904,9 @@ void yyfree (void * ptr )
 
 
 
-int analizadorLexico(FILE* archivoEntrada, TablaReales *tr, TablaCadenas *tc, TablaIdentificadores *ti, ListaTokens *lt){
+void analizadorLexico(FILE* archivoEntrada, TablaReales *tr, TablaCadenas *tc, TablaIdentificadores *ti, ListaTokens *lt){
         yyin = archivoEntrada;
-        archSal = fopen("lex_an_error.log","w");
+        archSal = fopen("lex_an_error.txt","w");
         tablaR = tr;
         tablaC = tc;
         tablaI = ti;

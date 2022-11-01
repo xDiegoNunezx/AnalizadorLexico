@@ -29,7 +29,6 @@ void imprimir_tabla(Tabla *t, FILE *archivoSalida);
 
 TablaIdentificadores *nueva_tabla_indentificadores();
 int insertar_tabla_identificadores(TablaIdentificadores *t, char* nombre);
-
 void imprimir_tabla_identificadores(TablaIdentificadores *t, FILE *archivoSalida);
 
 
