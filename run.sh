@@ -1,2 +1,2 @@
 
-./analizadorLexico.out ./prueba.u
+./bin/main.out ./prueba.u

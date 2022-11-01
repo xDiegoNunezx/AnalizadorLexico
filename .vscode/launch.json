@@ -5,7 +5,7 @@
             "name": "C/C++: gcc-9 Compilar y depurar el archivo activo",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/../analizadorLexico.out",
+            "program": "${fileDirname}/../bin/main.out",
             "args": ["prueba.u"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}/..",

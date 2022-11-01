@@ -4,6 +4,8 @@
 #include "tablas.h"
 #include "tokens.h"
 #include <stdio.h>
+
+
 int main(int argc, char *argv[]){
     FILE *archivoEntrada = NULL;
     FILE *archivoSalida = fopen("tablas-generadas.txt", "w");

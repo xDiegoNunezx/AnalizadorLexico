@@ -1,29 +1,30 @@
-OBJS	= tablas.o tokens.o main.o lex.yy.o
-SOURCE	= tablas.c tokens.c main.c lex.yy.c
-HEADER	= tablas.h tokens.h lex.yy.h
-SOURCEDIR = src
-OUT	= analizadorLexico.out
-CC	 = gcc
-FLAGS	 = -g -c -Wall
-LFLAGS	 = -lm -lfl
+MKDIR   := mkdir
+RMDIR   := rm -rf 
+CC      := gcc
+BIN     := ./bin
+OBJ     := ./obj
+SRC     := ./src
+SRCS    := $(wildcard $(SRC)/*.c)
+OBJS    := $(patsubst $(SRC)/%.c,$(OBJ)/%.o,$(SRCS))
+EXE     := $(BIN)/main.out
+CFLAGS  := -g -Wall -lm
+LDFLAGS := -lfl -lm
 
-all: $(OBJS)
-	$(CC) -g $(OBJS) -o $(OUT) $(LFLAGS)
+.PHONY: all run clean
 
-tablas.o: $(SOURCEDIR)/tablas.c
-	$(CC) $(FLAGS) $(SOURCEDIR)/tablas.c 
+all: $(EXE)
 
-tokens.o: $(SOURCEDIR)/tokens.c
-	$(CC) $(FLAGS) $(SOURCEDIR)/tokens.c 
+$(EXE): $(OBJS) | $(BIN)
+	$(CC)  $^ -o $@ $(LDFLAGS)
 
-main.o: $(SOURCEDIR)/main.c
-	$(CC) $(FLAGS) $(SOURCEDIR)/main.c 
+$(OBJ)/%.o: $(SRC)/%.c | $(OBJ)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-lex.yy.o: $(SOURCEDIR)/lex.yy.c
-	$(CC) $(FLAGS) $(SOURCEDIR)/lex.yy.c 
-lex.yy.c: analizadorLexico.l
-	flex $(SOURCEDIR)/analizadorLexico.l
+$(BIN) $(OBJ):
+	$(MKDIR) $@
 
+run: $(EXE)
+	$<
 
 clean:
-	rm -f $(OBJS) $(OUT)
+	$(RMDIR) $(OBJ) $(BIN)
