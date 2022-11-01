@@ -1,0 +1,2 @@
+
+./analizadorLexico.out ./prueba.u
