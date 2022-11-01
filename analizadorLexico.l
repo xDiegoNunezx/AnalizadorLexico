@@ -23,7 +23,9 @@ letMayus        [A-Z]
 letMinus        [a-z]
 dig             [0-9]
 ident           \$({letMayus}|{letMinus})+
-real            [0-9]*\.[0-9]+
+noIdent         {dig}*({letMayus}|{letMinus})({letMayus}|{letMinus}|{dig})*
+real            {dig}*\.{dig}+
+noDecimal       0[0-9]+
 decimal         ([1-9][0-9]*)|0
 octal           [Oo][0-7]+
 cadena          (\"[^"'\n][^"'\n]+\")|('[^'\n]')|(\"'\")
@@ -31,11 +33,12 @@ simEsp          [{}()\[\],;:]
 operArit        [+\-*/%\^]
 opRel           <=|>=|==|<|>|!=
 opAsig          =
-palabra         ({let}|{dig})+
 %%
 {espacio}
 {salto}
-{palres}        nuevo_token_pal_res(listaT, yytext);        
+{noDecimal}     fprintf(archSal,"%s es un error, no se reconoce\n", yytext);
+{palres}        nuevo_token_pal_res(listaT, yytext);       
+ 
 {ident}         nuevo_token_ident(listaT, tablaI, yytext);
 {real}          nuevo_token_real(listaT, tablaR, yytext);
 {decimal}       nuevo_token_decimal(listaT, yytext);
@@ -45,14 +48,15 @@ palabra         ({let}|{dig})+
 {operArit}      nuevo_token_operadorA(listaT, yytext);
 {opRel}         nuevo_token_operadorR(listaT, yytext);
 {opAsig}        nuevo_token_asignacion(listaT);
+{noIdent}       fprintf(archSal,"%s es un error, no se reconoce\n", yytext);
 .               fprintf(archSal,"%s es un error, no se reconoce\n", yytext);
 %%
 
 
 
-int analizadorLexico(char* archivoEntrada, TablaReales *tr, TablaCadenas *tc, TablaIdentificadores *ti, ListaTokens *lt){
-        yyin = fopen(archivoEntrada,"r");
-        archSal = fopen("lex_an_output.txt","w");
+int analizadorLexico(FILE* archivoEntrada, TablaReales *tr, TablaCadenas *tc, TablaIdentificadores *ti, ListaTokens *lt){
+        yyin = archivoEntrada;
+        archSal = fopen("lex_an_error.log","w");
         tablaR = tr;
         tablaC = tc;
         tablaI = ti;

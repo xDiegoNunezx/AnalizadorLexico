@@ -29,5 +29,5 @@ int nuevo_token_simbolo(ListaTokens *lt, char *simbolo);
 int nuevo_token_operadorA(ListaTokens *lt, char *cadena);
 int nuevo_token_operadorR(ListaTokens *lt, char *cadena);
 int nuevo_token_asignacion(ListaTokens *lt);
-void imprimir_lista_tokens(ListaTokens *lt);
+void imprimir_lista_tokens(ListaTokens *lt, FILE* archivoSalida);
 #endif

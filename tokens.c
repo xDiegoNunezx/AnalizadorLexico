@@ -133,13 +133,14 @@ int nuevo_token_octal(ListaTokens *lt, char *num){
     return 0;
 }
 
-void imprimir_lista_tokens(ListaTokens *lt){
+void imprimir_lista_tokens(ListaTokens *lt, FILE *archivoSalida){
     NodoToken *nodoActual = lt -> head;
-    printf("clase   |   valor \n");
+    fprintf(archivoSalida, "(clase   ,   valor) \n");
     while(nodoActual){
-        printf("%d,   %d \n", nodoActual->info->clase, nodoActual->info->valor);
+        fprintf(archivoSalida, "(%d     ,      %d) \n", nodoActual->info->clase, nodoActual->info->valor);
         nodoActual = nodoActual->next;
     }
+    fprintf(archivoSalida, "\n");
 }
 
 

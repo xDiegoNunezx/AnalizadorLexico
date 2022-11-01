@@ -3,6 +3,7 @@
 #include <string.h>
 #include "tablas.h"
 #define CAPACIDAD_INICIAL 100
+
 Tabla *nueva_tabla(){
     Tabla *nuevaTabla = (Tabla*) malloc(sizeof(Tabla));
     
@@ -56,14 +57,14 @@ int insertar_tabla(Tabla *t, char* cadena){
     return t->tamanio - 1;
 }
 
-void imprimir_tabla(Tabla *t){
+void imprimir_tabla(Tabla *t, FILE *archivoSalida){
     int tamanio = t->tamanio;
-    printf("Pos  |  valor\n");
+    fprintf(archivoSalida, "Pos  |  valor\n\n");
     for(int i = 0; i < tamanio; i++){
         char *cadenaActual = t->arreglo[i];
-        printf("%d,   %s \n", i, cadenaActual);
+        fprintf(archivoSalida, "%d     %s \n", i, cadenaActual);
     }
-    printf("\n");
+    fprintf(archivoSalida, "\n");
 }
 
 TablaIdentificadores *nueva_tabla_indentificadores(){
@@ -130,13 +131,13 @@ int insertar_tabla_identificadores(TablaIdentificadores *t, char* nombre){
     return siguienteIndice;
 }
 
-void imprimir_tabla_identificadores(TablaIdentificadores *t){
+void imprimir_tabla_identificadores(TablaIdentificadores *t, FILE *archivoSalida){
     int tamanio = t->tamanio;
-    printf("Pos  |  nombre  |   tipo\n");
+    fprintf(archivoSalida, "Pos  |  nombre  |   tipo\n\n");
     for(int i = 0; i < tamanio; i++){
         char *nombre = t->arreglo[i].nombre;
         int tipo = t->arreglo[i].tipo;
-        printf("%d,   %s    %d\n", i, nombre, tipo);
+        fprintf(archivoSalida, "%d     %s         %d\n", i, nombre, tipo);
     }
-    printf("\n");
+    fprintf(archivoSalida,"\n");
 }

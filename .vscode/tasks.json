@@ -8,7 +8,8 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "-lfl",
-                "tablas.c",
+                "*.c",
+                "-lm",
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"

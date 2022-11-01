@@ -1,7 +1,6 @@
 #ifndef TABLAS_H
 #define TABLAS_H
-
-
+#include <stdio.h>
 
 typedef struct Tabla{
     int tamanio;
@@ -26,10 +25,13 @@ typedef Tabla TablaCadenas;
 
 Tabla *nueva_tabla();
 int insertar_tabla(Tabla *tabla, char* cadena);
-void imprimir_tabla(Tabla *t);
+void imprimir_tabla(Tabla *t, FILE *archivoSalida);
 
 TablaIdentificadores *nueva_tabla_indentificadores();
 int insertar_tabla_identificadores(TablaIdentificadores *t, char* nombre);
-void imprimir_tabla_identificadores(TablaIdentificadores *t);
+
+void imprimir_tabla_identificadores(TablaIdentificadores *t, FILE *archivoSalida);
+
+
 
 #endif
