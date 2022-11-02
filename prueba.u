@@ -1,27 +1,14 @@
-number main(){
-    number $a = 1;
-    real $b = 2.0;
-    symbol $c = '3';
-    o653 O653
-    repeat(number $i = 0; $i < 10; $i++){
-        step;
-    }
-
-    evaluate($a == $b){
-        big $d = 4;
-        symbol $e = '5';
-        $d + $e;
-    }instead{
-        large $d = 6;
-        symbol $e = '7';
-        make{
-            number $f = 8;
-            symbol $g = '9';
-        }loop($a < $b $c == $d $e != $f){
-            step;
-        }
-    }
-
-    throw 0;
-
-}
+$identificador
+00007
+45
+.89
+8.67
+o653
+o690
+"Una cadena"
+'"'
+""
+"
+"
+" "
+' '

@@ -6,6 +6,7 @@ Fecha de creación: 29/10/2022
 En este archivo se define la función que inicia el analisis léxico y se defienen
 las expresiones regulares necesarias para reconocer cada clase de componente léxica 
 solicitada.
+-
 */
 #include <stdio.h>
 #include <stdlib.h>

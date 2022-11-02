@@ -521,12 +521,14 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "./src/analizadorLexico.l"
 #line 2 "./src/analizadorLexico.l"
-
-
 /*
+Autores: Ricardo López Becerra, Diego Ignacio Nuñez Hernández
+Fecha de creación: 29/10/2022
+
 En este archivo se define la función que inicia el analisis léxico y se defienen
 las expresiones regulares necesarias para reconocer cada clase de componente léxica 
 solicitada.
+-
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -543,8 +545,8 @@ static ListaTokens *listaT;
 void realEncontrado(char *cadena, int tam);
 void cadenaEncontrada(char *cadena, int tam);
 void identificadorEncontrado(char *cadena);
-#line 547 "./src/lex.yy.c"
-#line 548 "./src/lex.yy.c"
+#line 549 "./src/lex.yy.c"
+#line 550 "./src/lex.yy.c"
 
 #define INITIAL 0
 
@@ -761,9 +763,9 @@ YY_DECL
 		}
 
 	{
-#line 42 "./src/analizadorLexico.l"
+#line 44 "./src/analizadorLexico.l"
 
-#line 767 "./src/lex.yy.c"
+#line 769 "./src/lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -822,86 +824,86 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 43 "./src/analizadorLexico.l"
+#line 45 "./src/analizadorLexico.l"
 
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 44 "./src/analizadorLexico.l"
+#line 46 "./src/analizadorLexico.l"
 
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 45 "./src/analizadorLexico.l"
+#line 47 "./src/analizadorLexico.l"
 fprintf(archSal,"%s es un error, no se reconoce\n", yytext);
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 46 "./src/analizadorLexico.l"
+#line 48 "./src/analizadorLexico.l"
 nuevo_token_pal_res(listaT, yytext);       
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 48 "./src/analizadorLexico.l"
+#line 50 "./src/analizadorLexico.l"
 nuevo_token_ident(listaT, tablaI, yytext);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 49 "./src/analizadorLexico.l"
+#line 51 "./src/analizadorLexico.l"
 nuevo_token_real(listaT, tablaR, yytext);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 50 "./src/analizadorLexico.l"
+#line 52 "./src/analizadorLexico.l"
 nuevo_token_decimal(listaT, yytext);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 51 "./src/analizadorLexico.l"
+#line 53 "./src/analizadorLexico.l"
 nuevo_token_octal(listaT, yytext);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 52 "./src/analizadorLexico.l"
+#line 54 "./src/analizadorLexico.l"
 nuevo_token_cadena(listaT, tablaC, yytext);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 53 "./src/analizadorLexico.l"
+#line 55 "./src/analizadorLexico.l"
 nuevo_token_simbolo(listaT, yytext);
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 54 "./src/analizadorLexico.l"
+#line 56 "./src/analizadorLexico.l"
 nuevo_token_operadorA(listaT, yytext);
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 55 "./src/analizadorLexico.l"
+#line 57 "./src/analizadorLexico.l"
 nuevo_token_operadorR(listaT, yytext);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 56 "./src/analizadorLexico.l"
+#line 58 "./src/analizadorLexico.l"
 nuevo_token_asignacion(listaT);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 57 "./src/analizadorLexico.l"
+#line 59 "./src/analizadorLexico.l"
 fprintf(archSal,"%s es un error, no se reconoce\n", yytext);
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 58 "./src/analizadorLexico.l"
+#line 60 "./src/analizadorLexico.l"
 fprintf(archSal,"%s es un error, no se reconoce\n", yytext);
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 59 "./src/analizadorLexico.l"
+#line 61 "./src/analizadorLexico.l"
 ECHO;
 	YY_BREAK
-#line 905 "./src/lex.yy.c"
+#line 907 "./src/lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1906,15 +1908,15 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 59 "./src/analizadorLexico.l"
+#line 61 "./src/analizadorLexico.l"
 
 
 /*
 Función que inicia el analisis léxico. Esta función configura los apuntadores a las tablas de números reales,
 cadenas e identificadores así como a la lista de tokens. 
 archivoEntrada: Apuntador de tipo FILE que describe el archivo de donde se deben leer las componentes léxicas
-tr: Apuntador a un objeto de tipo tabla donde se almancenan los tokens de tipo contante real encontrados.
-tc: Apuntador a un objecto de tipo tabla donde se almancenan los tokens de tipo contante cadena.
+tr: Apuntador a un objeto de tipo tabla donde se almacenan los tokens de tipo contante real encontrados.
+tc: Apuntador a un objecto de tipo tabla donde se almacenan los tokens de tipo contante cadena.
 ti: Apuntador a un objecto de tipo TablaIdentificadores donde se lleva un recuento de los identificadores reconocidos
 hasta el momento.
 lt: Apuntador a la lista de tokens generados.
