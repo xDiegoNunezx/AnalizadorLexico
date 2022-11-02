@@ -7,8 +7,14 @@ SRC     := ./src
 SRCS    := $(wildcard $(SRC)/*.c)
 OBJS    := $(patsubst $(SRC)/%.c,$(OBJ)/%.o,$(SRCS))
 EXE     := $(BIN)/main.out
-CFLAGS  := -g -Wall
+
+
+OS := $(shell uname)
+ifeq ($(OS), Darwin)
 LDFLAGS := -lfl -lm
+else
+LDFLAGS := -ll -lm
+endif
 
 .PHONY: all run clean
 
