@@ -1,4 +1,7 @@
 /*
+Autores: Ricardo López Becerra, Diego Ignacio Nuñez Hernández
+Fecha de creación: 29/10/2022
+
 En este archivo se definen las funciones que pueden actuar sobre objectos de tipo Tabla y TablaIdenficadores
 así como las funciones necesarias para la creación de estos objectos.
 */

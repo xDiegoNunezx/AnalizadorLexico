@@ -1,4 +1,6 @@
 /*
+    Autores: Ricardo López Becerra, Diego Ignacio Nuñez Hernández
+    Fecha de creación: 29/10/2022
     Definición de las structuras para representar tablas de constantes, 
     Tabla de indentificadores e identificadores así como las funciones 
     que funcionan sobre ellas.

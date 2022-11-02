@@ -1,4 +1,7 @@
 /*
+    Autores: Ricardo López Becerra, Diego Ignacio Nuñez Hernández
+    Fecha de creación: 30/10/2022
+
     En este archivo se definen las acciones necesarias para crear la 
     lista de tokens generada por el analizador. Se deifine funciones
     para crear cada tipo de token.

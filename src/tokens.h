@@ -1,17 +1,34 @@
+/*
+Autores: Ricardo López Becerra, Diego Ignacio Nuñez Hernández
+Fecha de creación: 30/10/2022
+
+En este archivo se definen los tokens, las listas ligadas de tokens y los nodos de las listas ligadas.
+*/
+
 #ifndef TOKENS_H
 #define TOKENS_H
 #include "tablas.h"
+
+/*
+    Definición de un Token con dos atributos, clase y valor. 
+*/
 typedef struct Token{
     int clase;
     int valor;
 }Token;
-
+/*
+Definición de un nodo para una lista ligada doble de tokens.
+*/
 typedef struct NodoToken{
     Token *info;
     struct NodoToken *prev;
     struct NodoToken *next;
 }NodoToken;
 
+/*
+    Definición de una lista ligada doble de tokens con referencias a la cabeza y cola
+    de la lista.
+*/
 typedef struct ListaTokens{
     int tamanio;
     NodoToken *head;
