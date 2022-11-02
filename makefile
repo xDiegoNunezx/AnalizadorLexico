@@ -7,7 +7,7 @@ SRC     := ./src
 SRCS    := $(wildcard $(SRC)/*.c)
 OBJS    := $(patsubst $(SRC)/%.c,$(OBJ)/%.o,$(SRCS))
 EXE     := $(BIN)/main.out
-CFLAGS  := -g -Wall -lm
+CFLAGS  := -g -Wall
 LDFLAGS := -lfl -lm
 
 .PHONY: all run clean

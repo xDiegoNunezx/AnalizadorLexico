@@ -173,8 +173,8 @@ int nuevo_token_operadorA(ListaTokens *lt, char *cadena){
     if(lt == NULL){
         return -1;
     }
-
-    int pos = -1;
+/*
+   int pos = -1;
     for (int i = 0; i < 6; i++){
         if(strcmp(TablaOperadoresA[i], cadena) == 0){
             pos = i;
@@ -185,8 +185,8 @@ int nuevo_token_operadorA(ListaTokens *lt, char *cadena){
     if(pos == -1){
         return -1;
     }
-
-    Token *nuevoToken = nuevo_Token(6, pos);
+ */
+    Token *nuevoToken = nuevo_Token(6, *cadena);
     agregar_lista_tokens(lt, nuevoToken);
 
     return 0;

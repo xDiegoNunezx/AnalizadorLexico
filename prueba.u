@@ -10,7 +10,7 @@ number main(){
     evaluate($a == $b){
         big $d = 4;
         symbol $e = '5';
-
+        $d + $e;
     }instead{
         large $d = 6;
         symbol $e = '7';
