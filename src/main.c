@@ -5,7 +5,7 @@ Fecha de creación: 30/10/2022
 Analizador léxico que reconoco las clases solicitadas.
 
 Punto de acceso al programa. El programa debe recibir un parametro al ser corrido especificando el archivo 
-a analizar. Si no se para ningún archivo al programa, este detiene su ejecución. Aquí se inicializan las
+a analizar. Si no se pasa ningún archivo al programa, este detiene su ejecución. Aquí se inicializan las
 tablas de símbolos y la lista ligada de tokens. Desde este punto también se inicial el analisis y se imprimen
 las tablas de símbolos al terminar.
 */

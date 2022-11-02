@@ -1,10 +1,9 @@
 /*
     Autores: Ricardo López Becerra, Diego Ignacio Nuñez Hernández
     Fecha de creación: 29/10/2022
-    Definición de las structuras para representar tablas de constantes, 
-    Tabla de indentificadores e identificadores así como las funciones 
-    que funcionan sobre ellas.
-
+    Definición de las estructuras para representar a los identificadores,
+    la tabla de identificadores y la tabla de constantes. Además se
+    definen las funciones que se ejecutan sobre ellas.
 */
 
 #ifndef TABLAS_H
@@ -19,6 +18,9 @@ typedef struct Tabla{
     int capacidad;
     char **arreglo;
 } Tabla;
+
+typedef Tabla TablaReales;
+typedef Tabla TablaCadenas;
 
 /*
     Identificador con nombre y tipo.
@@ -36,10 +38,6 @@ typedef struct TablaIdentificadores{
     int capacidad;
     Identificador *arreglo;
 }TablaIdentificadores;
-
-
-typedef Tabla TablaReales;
-typedef Tabla TablaCadenas;
 
 Tabla *nueva_tabla();
 int insertar_tabla(Tabla *tabla, char* cadena);

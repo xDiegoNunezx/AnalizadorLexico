@@ -3,7 +3,7 @@
     Fecha de creación: 30/10/2022
 
     En este archivo se definen las acciones necesarias para crear la 
-    lista de tokens generada por el analizador. Se deifine funciones
+    lista de tokens generada por el analizador. Se definen funciones
     para crear cada tipo de token.
 */
 
@@ -95,6 +95,64 @@ int agregar_lista_tokens(ListaTokens *lt, Token *nuevoToken){
     lt->tail = nuevoNodo;
     return 0;
 }
+
+/*
+    Función que imprime una lista de tokens a un archivo.
+    lt: Lista de tokens a imprimir.
+    archivoSalida: Objeto de tipo FILE que representa el archivo donde se 
+    imprimirá la lista.
+*/
+void imprimir_lista_tokens(ListaTokens *lt, FILE *archivoSalida){
+    NodoToken *nodoActual = lt -> head;
+    fprintf(archivoSalida, "(clase   ,   valor) \n");
+    while(nodoActual){
+        fprintf(archivoSalida, "(%d     ,      %d) \n", nodoActual->info->clase, nodoActual->info->valor);
+        nodoActual = nodoActual->next;
+    }
+    fprintf(archivoSalida, "\n");
+}
+
+/*
+    Función que cambia un número en representación octal a decimal.
+    octal: Número en representación octal.
+*/
+int octaltodecimal(int octal){
+    int decimalnumber = 0, i = 0;
+
+    while (octal != 0) {
+
+        decimalnumber
+            = decimalnumber + (octal % 10) * pow(8, i++);
+        octal = octal / 10;
+    }
+
+    return decimalnumber;
+}
+/*
+    Función que realiza busqueda binaria en un arreglo de cadenas.
+    Devuelve el índice de la cadena en caso de ser encontrada. De no ser
+    así devuelve -1.
+    array: Arreglo de apuntadores a cadenas.
+    l: Indice que es cota inferior inclusiva de la búsqueda.
+    r: Indice que es cota superior inclusiva de la búsqueda.
+    objetivo: Apuntador a la cadena buscada.
+*/
+int busquedaBinaria(const char **array, int l, int r, char *objetivo){
+    if(l > r){
+        return -1;
+    }
+
+    int m = (l + r)/2;
+    int valCmp = strcmp(array[m], objetivo);
+    if(valCmp == 0){
+        return m;
+    }else if(valCmp < 1){
+        return busquedaBinaria(array, m + 1, r, objetivo);
+    }else{
+        return busquedaBinaria(array, l, m - 1, objetivo);
+    }
+}
+
 /*
     Crea un token de clase 0 (Palabra reservada). Utiliza busqueda binaria para encontrar
     la posición de la palabra reservada.
@@ -136,6 +194,37 @@ int nuevo_token_ident(ListaTokens *lt, TablaIdentificadores *ti, char *ident){
     agregar_lista_tokens(lt, nuevoToken);
     return 0;
 }
+
+/*
+    Crea un token de clase 2 (Constante entera) a partir de un número decmal.
+    El valor del token es el mismo decimal.
+    lt: Lista donde agregar el token.
+    num: Cadena que representa al número decimal.
+*/
+int nuevo_token_decimal(ListaTokens *lt, char *num){
+    int n = atoi(num);
+    Token *nuevoToken = nuevo_Token(2, n);
+    agregar_lista_tokens(lt, nuevoToken);
+    return 0;
+}
+
+/*
+    Crea un token de clase 2 (Constante entera). El valor del token es el valor
+    octal obtenido representado de manera decimal.
+    lt: Lista donde agregar el token.
+    num: Cadena que representa al número octal.
+*/
+
+int nuevo_token_octal(ListaTokens *lt, char *num){
+    char *numLimpio = num + 1;
+    int n = atoi(numLimpio);
+    int valorDecimal = octaltodecimal(n);
+
+    Token *nuevoToken = nuevo_Token(2, valorDecimal);
+    agregar_lista_tokens(lt, nuevoToken);
+    return 0;
+}
+
 /*
     Crea un token de clase 3 (Constante real). Inserta al identificador en la tabla 
     de indeitificadores y utiliza su nueva posición asignada
@@ -156,52 +245,6 @@ int nuevo_token_real(ListaTokens *lt, TablaReales *tr, char *num){
     Token *nuevoToken = nuevo_Token(3, pos);
     agregar_lista_tokens(lt, nuevoToken);
     return 0;
-}
-
-/*
-    Crea un token de clase 2 (Constante entera) a partir de un número decmal.
-     El valor del token es el mismo decimal.
-    lt: Lista donde agregar el token.
-    num: Cadena que representa al número decimal.
-*/
-int nuevo_token_decimal(ListaTokens *lt, char *num){
-    int n = atoi(num);
-    Token *nuevoToken = nuevo_Token(2, n);
-    agregar_lista_tokens(lt, nuevoToken);
-    return 0;
-}
-
-
-/*
-    Crea un token de clase 2 (Constante entera). El valor del token es el valor
-    octal obtenido representado de manera decimal.
-    lt: Lista donde agregar el token.
-    num: Cadena que representa al número octal.
-*/
-
-int nuevo_token_octal(ListaTokens *lt, char *num){
-    char *numLimpio = num + 1;
-    int n = atoi(numLimpio);
-    int valorDecimal = octaltodecimal(n);
-
-    Token *nuevoToken = nuevo_Token(2, valorDecimal);
-    agregar_lista_tokens(lt, nuevoToken);
-    return 0;
-}
-/*
-    Función que imprime una lista de tokens a un archivo.
-    lt: Lista de tokens a imprimir.
-    archivoSalida: Objeto de tipo FILE que representa el archivo donde se 
-    imprimirá la lista.
-*/
-void imprimir_lista_tokens(ListaTokens *lt, FILE *archivoSalida){
-    NodoToken *nodoActual = lt -> head;
-    fprintf(archivoSalida, "(clase   ,   valor) \n");
-    while(nodoActual){
-        fprintf(archivoSalida, "(%d     ,      %d) \n", nodoActual->info->clase, nodoActual->info->valor);
-        nodoActual = nodoActual->next;
-    }
-    fprintf(archivoSalida, "\n");
 }
 
 /*
@@ -249,19 +292,7 @@ int nuevo_token_operadorA(ListaTokens *lt, char *cadena){
     if(lt == NULL){
         return -1;
     }
-/*
-   int pos = -1;
-    for (int i = 0; i < 6; i++){
-        if(strcmp(TablaOperadoresA[i], cadena) == 0){
-            pos = i;
-            break;
-        }
-    }
 
-    if(pos == -1){
-        return -1;
-    }
- */
     Token *nuevoToken = nuevo_Token(6, *cadena);
     agregar_lista_tokens(lt, nuevoToken);
 
@@ -307,47 +338,3 @@ int nuevo_token_asignacion(ListaTokens *lt){
     agregar_lista_tokens(lt, nuevoToken);
     return 0;
 }
-
-/*
-    Función que cambia un número en representación octal a decimal.
-    octal: Número en representación octal.
-*/
-int octaltodecimal(int octal){
-    int decimalnumber = 0, i = 0;
-  
-
-    while (octal != 0) {
-  
-        decimalnumber
-            = decimalnumber + (octal % 10) * pow(8, i++);
-        octal = octal / 10;
-    }
-
-    return decimalnumber;
-}
-/*
-    Función que realiza busqueda binaria en un arreglo de cadenas.
-    Devuelve el índice de la cadena en caso de ser encontrada. De no ser
-    así devuelve -1.
-    array: Arreglo de apuntadores a cadenas.
-    l: Indice que es cota inferior inclusiva de la búsqueda.
-    r: Indice que es cota superior inclusiva de la búsqueda.
-    objetivo: Apuntador a la cadena buscada.
-*/
-int busquedaBinaria(const char **array, int l, int r, char *objetivo){
-    if(l > r){
-        return -1;
-    }
-
-    int m = (l + r)/2;
-    int valCmp = strcmp(array[m], objetivo);
-    if(valCmp == 0){
-        return m;
-    }else if(valCmp < 1){
-        return busquedaBinaria(array, m + 1, r, objetivo);
-    }else{
-        return busquedaBinaria(array, l, m - 1, objetivo);
-    }
-}
-
-

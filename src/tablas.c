@@ -2,7 +2,7 @@
 Autores: Ricardo López Becerra, Diego Ignacio Nuñez Hernández
 Fecha de creación: 29/10/2022
 
-En este archivo se definen las funciones que pueden actuar sobre objectos de tipo Tabla y TablaIdenficadores
+En este archivo se definen las funciones que pueden actuar sobre objetos de tipo Tabla y TablaIdenficadores
 así como las funciones necesarias para la creación de estos objectos.
 */
 
@@ -13,8 +13,8 @@ así como las funciones necesarias para la creación de estos objectos.
 #define CAPACIDAD_INICIAL 100
 
 /*
-Función que devuelve un objecto de tipo tabla. Las tablas tiene una capacidad de 
-CAPACIDAD_INICIAL al crearse. Retorno un apuntador nulo si no es posible reservar 
+Función que devuelve un objecto de tipo tabla. Las tablas tienen una capacidad de 
+CAPACIDAD_INICIAL al crearse. Retorna un apuntador nulo si no es posible reservar 
 la memoria necesaria.
 */
 Tabla *nueva_tabla(){
@@ -86,7 +86,7 @@ int insertar_tabla(Tabla *t, char* cadena){
 }
 /*
     Función que imprime una tabla de tokens a un archivo.
-    t: Apuntador a tabla de tokes a imprimir.
+    t: Apuntador a tabla de tokens a imprimir.
     archivoSalida: Apuntador a objeto de tipo FILE que representa
     el archivo donde se imprimirá la tabla.
 */
@@ -104,8 +104,8 @@ void imprimir_tabla(Tabla *t, FILE *archivoSalida){
 }
 
 /*
-Función que devuelve un objecto de tipo tablaIdentificadores. Las tablas tiene una capacidad de 
-CAPACIDAD_INICIAL al crearse. Retorno un apuntador nulo si no es posible reservar 
+Función que devuelve un objecto de tipo tablaIdentificadores. Las tablas tienen una capacidad de 
+CAPACIDAD_INICIAL al crearse. Retorna un apuntador nulo si no es posible reservar 
 la memoria necesaria.
 */
 
@@ -136,8 +136,8 @@ proporcionados sea nulo o en caso de que la tabla deba crecer y no se pueda rese
 suficiente. Devuelve el indice del elemento insertado en caso de que la operación se realice 
 exitosamente. En caso de que el identificador ya se encuentre en la tabla, devuelve el índice del
 elemento.
-t: Apuntador a objeto de tipo TablaIdentificadores
-nombre: Apuntador a cadena (Componente léxica) a copiar e insertar el la tabla de identificadores. Esta cadena
+t: Apuntador a un objeto de tipo TablaIdentificadores
+nombre: Apuntador a cadena (Componente léxica) a copiar e insertar en la tabla de identificadores. Esta cadena
 corresponde al nombre del identificador.
 */
 
@@ -150,7 +150,7 @@ int insertar_tabla_identificadores(TablaIdentificadores *t, char* nombre){
     }
 
     /*
-    Búsqueda lineal del nuevo nombre de identificador en la lista de indentificadores. Si es encontrado,
+    Búsqueda lineal del nuevo nombre de identificador en la lista de identificadores. Si es encontrado,
     devuelve el índice donde se encontró.
     */
     for(int i = 0; i < t->tamanio; i++){

@@ -63,8 +63,8 @@ opAsig          =
 Función que inicia el analisis léxico. Esta función configura los apuntadores a las tablas de números reales,
 cadenas e identificadores así como a la lista de tokens. 
 archivoEntrada: Apuntador de tipo FILE que describe el archivo de donde se deben leer las componentes léxicas
-tr: Apuntador a un objeto de tipo tabla donde se almancenan los tokens de tipo contante real encontrados.
-tc: Apuntador a un objecto de tipo tabla donde se almancenan los tokens de tipo contante cadena.
+tr: Apuntador a un objeto de tipo tabla donde se almacenan los tokens de tipo contante real encontrados.
+tc: Apuntador a un objecto de tipo tabla donde se almacenan los tokens de tipo contante cadena.
 ti: Apuntador a un objecto de tipo TablaIdentificadores donde se lleva un recuento de los identificadores reconocidos
 hasta el momento.
 lt: Apuntador a la lista de tokens generados.
