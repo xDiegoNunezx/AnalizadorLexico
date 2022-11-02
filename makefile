@@ -11,9 +11,9 @@ EXE     := $(BIN)/main.out
 
 OS := $(uname)
 ifeq ($(OS), Darwin)
-LDFLAGS := -lfl -lm
-else
 LDFLAGS := -ll -lm
+else
+LDFLAGS := -lfl -lm
 endif
 
 .PHONY: all run clean
