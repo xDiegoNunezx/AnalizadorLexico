@@ -9,7 +9,7 @@ OBJS    := $(patsubst $(SRC)/%.c,$(OBJ)/%.o,$(SRCS))
 EXE     := $(BIN)/main.out
 
 
-OS := $(shell uname)
+OS := $(uname)
 ifeq ($(OS), Darwin)
 LDFLAGS := -lfl -lm
 else
