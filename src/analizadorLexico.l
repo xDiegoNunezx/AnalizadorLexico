@@ -1,16 +1,22 @@
 %{
+
+
+/*
+En este archivo se define la función que inicia el analisis léxico y se defienen
+las expresiones regulares necesarias para reconocer cada clase de componente léxica 
+solicitada.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include "tablas.h"
 #include "tokens.h"
-/* Programa que lee un programa y hace elreconocimiento de identificadores, 
-palabras reservadas y enteros de un lenguaje x
-*/
-FILE *archSal;
-TablaReales *tablaR;
-TablaCadenas *tablaC;
-TablaIdentificadores *tablaI;
-ListaTokens *listaT;
+
+
+static FILE *archSal;
+static TablaReales *tablaR;
+static TablaCadenas *tablaC;
+static TablaIdentificadores *tablaI;
+static ListaTokens *listaT;
 
 void realEncontrado(char *cadena, int tam);
 void cadenaEncontrada(char *cadena, int tam);
@@ -52,8 +58,16 @@ opAsig          =
 .               fprintf(archSal,"%s es un error, no se reconoce\n", yytext);
 %%
 
-
-
+/*
+Función que inicia el analisis léxico. Esta función configura los apuntadores a las tablas de números reales,
+cadenas e identificadores así como a la lista de tokens. 
+archivoEntrada: Apuntador de tipo FILE que describe el archivo de donde se deben leer las componentes léxicas
+tr: Apuntador a un objeto de tipo tabla donde se almancenan los tokens de tipo contante real encontrados.
+tc: Apuntador a un objecto de tipo tabla donde se almancenan los tokens de tipo contante cadena.
+ti: Apuntador a un objecto de tipo TablaIdentificadores donde se lleva un recuento de los identificadores reconocidos
+hasta el momento.
+lt: Apuntador a la lista de tokens generados.
+*/
 void analizadorLexico(FILE* archivoEntrada, TablaReales *tr, TablaCadenas *tc, TablaIdentificadores *ti, ListaTokens *lt){
         yyin = archivoEntrada;
         archSal = fopen("lex_an_error.txt","w");

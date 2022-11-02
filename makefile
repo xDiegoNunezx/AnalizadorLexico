@@ -23,6 +23,9 @@ $(OBJ)/%.o: $(SRC)/%.c | $(OBJ)
 $(BIN) $(OBJ):
 	$(MKDIR) $@
 
+$(SRC)/lex.yy.c: $(SRC)/analizadorLexico.l 
+	flex -o $(SRC)/lex.yy.c $(SRC)/analizadorLexico.l
+
 run: $(EXE)
 	$<
 

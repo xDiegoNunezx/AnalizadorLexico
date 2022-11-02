@@ -1,9 +1,19 @@
+/*
+En este archivo se definen las funciones que pueden actuar sobre objectos de tipo Tabla y TablaIdenficadores
+así como las funciones necesarias para la creación de estos objectos.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "tablas.h"
 #define CAPACIDAD_INICIAL 100
 
+/*
+Función que devuelve un objecto de tipo tabla. Las tablas tiene una capacidad de 
+CAPACIDAD_INICIAL al crearse. Retorno un apuntador nulo si no es posible reservar 
+la memoria necesaria.
+*/
 Tabla *nueva_tabla(){
     Tabla *nuevaTabla = (Tabla*) malloc(sizeof(Tabla));
     
@@ -13,6 +23,8 @@ Tabla *nueva_tabla(){
     }   
 
     char **nuevoArreglo = (char**)malloc(sizeof(char*) * CAPACIDAD_INICIAL);
+    
+    // Se limpia la memoria del arreglo dinámico interno a la tabla.
     for(int i = 0; i < CAPACIDAD_INICIAL; i++){
         nuevoArreglo[i] = NULL;
     }
@@ -23,6 +35,15 @@ Tabla *nueva_tabla(){
     return nuevaTabla;
 }
 
+/*
+Inserta una cadena en un objeto de tipo tabla. La posición del objeto es su indice en el arreglo 
+Devuelve -1 si la operacion no fue exitosa por en caso de que alguno de los apuntadores 
+proporcionados sea nulo o en caso de que la tabla deba crecer y no se pueda reservar memoria
+suficiente. Devuelve el indice del elemento insertado en caso de que la operación se realice 
+exitosamente.
+t: Apuntador a objeto de tipo Tabla
+cadena: Apuntador a cadena (Componente léxica) a copiar e insertar el la tabla de componentes léxicas
+*/
 int insertar_tabla(Tabla *t, char* cadena){
     if(t == NULL)
         return -1;
@@ -30,7 +51,11 @@ int insertar_tabla(Tabla *t, char* cadena){
     if(cadena == NULL){
         return -1;
     }
-
+    /*
+    Si la cantidad de elementos en el arreglo dinámico es igual a su capacidad, se reserva uno nuevo 
+    con CAPACIDAD_INICIAL espacios extra, se copian los elemetos de un arreglo a otro y se libera la
+    memoria del arreglo original.
+    */
     if( t->tamanio == t->capacidad){
         char **nuevoArreglo = (char**)malloc(sizeof(char*) * (t->capacidad + CAPACIDAD_INICIAL));
         if(nuevoArreglo == NULL)
@@ -56,8 +81,16 @@ int insertar_tabla(Tabla *t, char* cadena){
     t->tamanio++;
     return t->tamanio - 1;
 }
-
+/*
+    Función que imprime una tabla de tokens a un archivo.
+    t: Apuntador a tabla de tokes a imprimir.
+    archivoSalida: Apuntador a objeto de tipo FILE que representa
+    el archivo donde se imprimirá la tabla.
+*/
 void imprimir_tabla(Tabla *t, FILE *archivoSalida){
+    if(t == NULL){
+        return;
+    }
     int tamanio = t->tamanio;
     fprintf(archivoSalida, "Pos  |  valor\n\n");
     for(int i = 0; i < tamanio; i++){
@@ -66,6 +99,12 @@ void imprimir_tabla(Tabla *t, FILE *archivoSalida){
     }
     fprintf(archivoSalida, "\n");
 }
+
+/*
+Función que devuelve un objecto de tipo tablaIdentificadores. Las tablas tiene una capacidad de 
+CAPACIDAD_INICIAL al crearse. Retorno un apuntador nulo si no es posible reservar 
+la memoria necesaria.
+*/
 
 TablaIdentificadores *nueva_tabla_indentificadores(){
     TablaIdentificadores *nuevaTabla = (TablaIdentificadores*) malloc(sizeof(TablaIdentificadores));
@@ -87,6 +126,18 @@ TablaIdentificadores *nueva_tabla_indentificadores(){
     return nuevaTabla;
 }
 
+/*
+Inserta una cadena en un objeto de tipo tablaIdentificadores. La posición del objeto es su indice en el arreglo 
+Devuelve -1 si la operacion no fue exitosa por en caso de que alguno de los apuntadores 
+proporcionados sea nulo o en caso de que la tabla deba crecer y no se pueda reservar memoria
+suficiente. Devuelve el indice del elemento insertado en caso de que la operación se realice 
+exitosamente. En caso de que el identificador ya se encuentre en la tabla, devuelve el índice del
+elemento.
+t: Apuntador a objeto de tipo TablaIdentificadores
+nombre: Apuntador a cadena (Componente léxica) a copiar e insertar el la tabla de identificadores. Esta cadena
+corresponde al nombre del identificador.
+*/
+
 int insertar_tabla_identificadores(TablaIdentificadores *t, char* nombre){
     if(t == NULL)
         return -1;
@@ -94,6 +145,17 @@ int insertar_tabla_identificadores(TablaIdentificadores *t, char* nombre){
     if(nombre == NULL){
         return -1;
     }
+
+    /*
+    Búsqueda lineal del nuevo nombre de identificador en la lista de indentificadores. Si es encontrado,
+    devuelve el índice donde se encontró.
+    */
+    for(int i = 0; i < t->tamanio; i++){
+        if(strcmp(nombre, t->arreglo[i].nombre) == 0){
+            return i;
+        }
+    }
+
 
     if(t->tamanio == t->capacidad){
         Identificador *nuevoArreglo = (Identificador*)malloc(sizeof(Identificador) * (t->capacidad + CAPACIDAD_INICIAL));
@@ -115,11 +177,6 @@ int insertar_tabla_identificadores(TablaIdentificadores *t, char* nombre){
         t->capacidad = t->capacidad + CAPACIDAD_INICIAL;
     }
 
-    for(int i = 0; i < t->tamanio; i++){
-        if(strcmp(nombre, t->arreglo[i].nombre) == 0){
-            return i;
-        }
-    }
 
     Identificador *identificadoresActuales = t->arreglo;
     int siguienteIndice = t->tamanio;
@@ -130,7 +187,12 @@ int insertar_tabla_identificadores(TablaIdentificadores *t, char* nombre){
     t->tamanio++;
     return siguienteIndice;
 }
-
+/*
+    Función que imprime una tabla de identificadores a un archivo.
+    t: Apuntador a tabla de identificadores a imprimir.
+    archivoSalida: Apuntador a objeto de tipo FILE que representa
+    el archivo donde se imprimirá la tabla.
+*/
 void imprimir_tabla_identificadores(TablaIdentificadores *t, FILE *archivoSalida){
     int tamanio = t->tamanio;
     fprintf(archivoSalida, "Pos  |  nombre  |   tipo\n\n");
