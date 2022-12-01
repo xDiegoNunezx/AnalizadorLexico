@@ -11,9 +11,9 @@ CFLAGS := -g -Wall
 
 OS := $(uname)
 ifeq ($(OS), Darwin)
-LDFLAGS := -ll -lm
-else
 LDFLAGS := -lfl -lm
+else
+LDFLAGS := -ll -lm
 endif
 
 .PHONY: all run clean

@@ -44,5 +44,6 @@ int main(int argc, char *argv[]){
     imprimir_tabla_identificadores(ti, archivoSalida);
     fprintf(archivoSalida, "===Lista de tokens producidos=== \n");
     imprimir_lista_tokens(lt, archivoSalida);
+    
     return 0;
 }

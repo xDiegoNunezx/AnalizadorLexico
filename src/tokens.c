@@ -18,6 +18,9 @@ const char *palabrasReservadas[17] = {"alternative", "big", "evaluate",
         "instead", "large", "loop", "make", "number", "other", "real",
         "repeat", "select", "small", "step", "stop", "symbol", "throw"};
 
+const char *atomosPalabrasR[17] = {'a', 'b', 'f', 't', 'g', 'w', 'm',
+'#', 'o','x','j','h','p','c','q','y','z'};
+const char *atomosOpRel[6] = {'<','>','l','u','e','d'};
 const char *TablaOperadoresA[7] = {"+","-","*","/","%","\\","^"};
 
 const char *TablaOperadoresR[6] = {"<",">","<=",">=","==","!="};
@@ -337,4 +340,31 @@ int nuevo_token_asignacion(ListaTokens *lt){
     Token *nuevoToken = nuevo_Token(8, '=');
     agregar_lista_tokens(lt, nuevoToken);
     return 0;
+}
+
+//Atomos
+ListaAtomos *nueva_lista_atomos(ListaTokens *lt){
+    NodoToken *actual = lt->head;
+    while(actual != NULL){
+        switch(actual -> info -> clase){
+            case 0:
+            break;
+            case 1:    
+            break;                    
+            case 2:
+            break;
+            case 3:
+            break;
+            case 4:
+            break;
+            case 5:
+            break;
+            case 7:
+            break;
+            case 8:
+            break;
+            default:
+                return NULL;
+        }
+    }
 }

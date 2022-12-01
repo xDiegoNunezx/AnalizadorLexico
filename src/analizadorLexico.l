@@ -38,7 +38,7 @@ decimal         ([1-9][0-9]*)|0
 octal           [Oo][0-7]+
 cadena          (\"[^"'\n][^"'\n]+\")|('[^'\n]')|(\"'\")
 simEsp          [{}()\[\],;:]
-operArit        [+\-*/%\^]
+operArit        [+\-*/%\\^]
 opRel           <=|>=|==|<|>|!=
 opAsig          =
 %%
@@ -46,7 +46,6 @@ opAsig          =
 {salto}
 {noDecimal}     fprintf(archSal,"%s es un error, no se reconoce\n", yytext);
 {palres}        nuevo_token_pal_res(listaT, yytext);       
- 
 {ident}         nuevo_token_ident(listaT, tablaI, yytext);
 {real}          nuevo_token_real(listaT, tablaR, yytext);
 {decimal}       nuevo_token_decimal(listaT, yytext);

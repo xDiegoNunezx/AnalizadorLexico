@@ -35,6 +35,18 @@ typedef struct ListaTokens{
     NodoToken *tail;
 }ListaTokens;
 
+// Atomos
+typedef struct NodoAtomo{
+    char info;
+    struct NodoAtomo *next;
+}NodoAtomo;
+
+typedef struct ListaAtomos{
+    int tamanio;
+    NodoAtomo *head;
+    NodoAtomo *tail;
+}ListaAtomos;
+
 ListaTokens *nueva_lista_tokens();
 int nuevo_token_pal_res(ListaTokens* lt, char * pal);
 int nuevo_token_ident(ListaTokens *lt, TablaIdentificadores *ti, char *ident);
@@ -47,4 +59,5 @@ int nuevo_token_operadorA(ListaTokens *lt, char *cadena);
 int nuevo_token_operadorR(ListaTokens *lt, char *cadena);
 int nuevo_token_asignacion(ListaTokens *lt);
 void imprimir_lista_tokens(ListaTokens *lt, FILE* archivoSalida);
+ListaAtomos *nueva_lista_atomos(ListaTokens *lt);
 #endif

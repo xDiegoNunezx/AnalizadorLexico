@@ -1,6 +1,6 @@
-#line 2 "./src/lex.yy.c"
+#line 1 "./src/lex.yy.c"
 
-#line 4 "./src/lex.yy.c"
+#line 3 "./src/lex.yy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -258,8 +258,8 @@ static YY_BUFFER_STATE * yy_buffer_stack = NULL; /**< Stack as an array. */
  * Returns the top of the stack, or NULL.
  */
 #define YY_CURRENT_BUFFER ( (yy_buffer_stack) \
-                          ? (yy_buffer_stack)[(yy_buffer_stack_top)] \
-                          : NULL)
+                    	? (yy_buffer_stack)[(yy_buffer_stack_top)] \
+                        : NULL)
 /* Same as previous macro, but useful when we know that the buffer stack is not
  * NULL or when we need an lvalue. For internal use only.
  */
@@ -388,7 +388,7 @@ static const YY_CHAR yy_ec[256] =
        15,   16,    1,    1,   17,   17,   17,   17,   17,   17,
        17,   17,   17,   17,   17,   17,   17,   17,   18,   17,
        17,   17,   17,   17,   17,   17,   17,   17,   17,   17,
-        9,    1,    9,    7,    1,    1,   19,   20,   21,   22,
+        9,    7,    9,    7,    1,    1,   19,   20,   21,   22,
 
        23,   24,   25,   26,   27,   24,   28,   29,   30,   31,
        32,   33,   24,   34,   35,   36,   37,   38,   39,   24,
@@ -545,8 +545,8 @@ static ListaTokens *listaT;
 void realEncontrado(char *cadena, int tam);
 void cadenaEncontrada(char *cadena, int tam);
 void identificadorEncontrado(char *cadena);
+#line 548 "./src/lex.yy.c"
 #line 549 "./src/lex.yy.c"
-#line 550 "./src/lex.yy.c"
 
 #define INITIAL 0
 
@@ -765,7 +765,7 @@ YY_DECL
 	{
 #line 44 "./src/analizadorLexico.l"
 
-#line 769 "./src/lex.yy.c"
+#line 768 "./src/lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -845,65 +845,65 @@ nuevo_token_pal_res(listaT, yytext);
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 50 "./src/analizadorLexico.l"
+#line 49 "./src/analizadorLexico.l"
 nuevo_token_ident(listaT, tablaI, yytext);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 51 "./src/analizadorLexico.l"
+#line 50 "./src/analizadorLexico.l"
 nuevo_token_real(listaT, tablaR, yytext);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 52 "./src/analizadorLexico.l"
+#line 51 "./src/analizadorLexico.l"
 nuevo_token_decimal(listaT, yytext);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 53 "./src/analizadorLexico.l"
+#line 52 "./src/analizadorLexico.l"
 nuevo_token_octal(listaT, yytext);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 54 "./src/analizadorLexico.l"
+#line 53 "./src/analizadorLexico.l"
 nuevo_token_cadena(listaT, tablaC, yytext);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 55 "./src/analizadorLexico.l"
+#line 54 "./src/analizadorLexico.l"
 nuevo_token_simbolo(listaT, yytext);
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 56 "./src/analizadorLexico.l"
+#line 55 "./src/analizadorLexico.l"
 nuevo_token_operadorA(listaT, yytext);
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 57 "./src/analizadorLexico.l"
+#line 56 "./src/analizadorLexico.l"
 nuevo_token_operadorR(listaT, yytext);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 58 "./src/analizadorLexico.l"
+#line 57 "./src/analizadorLexico.l"
 nuevo_token_asignacion(listaT);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 59 "./src/analizadorLexico.l"
+#line 58 "./src/analizadorLexico.l"
 fprintf(archSal,"%s es un error, no se reconoce\n", yytext);
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 60 "./src/analizadorLexico.l"
+#line 59 "./src/analizadorLexico.l"
 fprintf(archSal,"%s es un error, no se reconoce\n", yytext);
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 61 "./src/analizadorLexico.l"
+#line 60 "./src/analizadorLexico.l"
 ECHO;
 	YY_BREAK
-#line 907 "./src/lex.yy.c"
+#line 906 "./src/lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1626,8 +1626,8 @@ YY_BUFFER_STATE yy_scan_buffer  (char * base, yy_size_t  size )
 	YY_BUFFER_STATE b;
     
 	if ( size < 2 ||
-	     base[size-2] != YY_END_OF_BUFFER_CHAR ||
-	     base[size-1] != YY_END_OF_BUFFER_CHAR )
+		base[size-2] != YY_END_OF_BUFFER_CHAR ||
+		base[size-1] != YY_END_OF_BUFFER_CHAR )
 		/* They forgot to leave room for the EOB's. */
 		return NULL;
 
@@ -1908,7 +1908,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 61 "./src/analizadorLexico.l"
+#line 60 "./src/analizadorLexico.l"
 
 
 /*
