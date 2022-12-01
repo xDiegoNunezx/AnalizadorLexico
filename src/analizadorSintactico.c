@@ -45,7 +45,7 @@ void otraFunc(){
 void Func(){
     if(actual->info=='b'||actual->info=='g'||actual->info=='#'||actual->info=='y'||actual->info=='x'){
         Tipo();
-        if(actual->inf == 'i'){
+        if(actual->info == 'i'){
             avanzar();
         } else {
             fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un identificador\n",ubicacion);
@@ -66,7 +66,6 @@ void Func(){
         }
 
         if(actual->info=='{'){
-            avanzar();
         } else {
             fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un '{'\n",ubicacion);
         }
@@ -86,13 +85,13 @@ void Func(){
 void Param(){
     if(actual->info=='b'||actual->info=='g'||actual->info=='#'||actual->info=='y'||actual->info=='x'){
         Tipo();
-        if(actual->inf == 'i'){
+        if(actual->info == 'i'){
             avanzar();
         } else {
             fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un identificador\n",ubicacion);
         }
         otroParam();
-    } else if(actual->inf == ')') {
+    } else if(actual->info == ')') {
         return;
     } else {
         fprintf(erroresSintacticos,"ERROR(%d): Se esperaba tipo de dato del parametro\n",ubicacion);
@@ -213,49 +212,238 @@ void J(){
 }
 
 void Y(){
-    
 }
 
 void X(){
-    
+    if(actual -> info == 'i' || actual -> info == 'n' || actual -> info == 'r' || actual -> info == 's'){
+        R();
+        if (actual -> info == ';'){
+            avanzar();
+        } else {
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un ';'\n",ubicacion);
+        }
+    }else if(actual -> info == ';'){
+        avanzar();
+    } else {
+        fprintf(erroresSintacticos,"ERROR(%d): Se esperaba ',', entero, real, cadena o identificador\n",ubicacion);
+    }
 }
 
 void Z(){
-    
+    if(actual -> info == 'i'){
+        avanzar();
+        if(actual -> info == '='){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un '='\n",ubicacion);
+        }
+        E();
+        if(actual -> info == ')'){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un ')'\n",ubicacion);
+        }
+    } else if(actual -> info == ')'){
+        avanzar();
+    }else{
+        fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un identificador o un ')'\n",ubicacion);
+    }
 }
 
 void H(){
+    if(actual -> info == 'h'){
+        avanzar();
+        
+        if(actual -> info == '('){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un '('\n",ubicacion);
+        }
+
+        if(actual -> info == 'i'){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un identificador\n",ubicacion);
+        }
+
+        if(actual -> info == ')'){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un ')'\n",ubicacion);
+        }
+
+        if(actual -> info == '{'){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un '{'\n",ubicacion);
+        }
+
+        CP();
+        OP();
+
+        if(actual -> info == '}'){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un '}'\n",ubicacion);
+        }
+
+    } else {
+        fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un 'select'\n",ubicacion);
+    }
     
 }
 
 void CP(){
-    
+    if(actual -> info == 'a'){
+        avanzar();
+        if(actual -> info == 'n'){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un entero\n",ubicacion);
+        }
+
+        if(actual -> info == ':'){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un ':'\n",ubicacion);
+        }
+
+        listaP();
+        U();
+        CP();
+
+    }else if (actual -> info == '}', actual ->info == 'o'){
+        return;
+    }else{
+        fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un '}' o un 'other'\n",ubicacion);
+    }
 }
 
 void OP(){
-    
+    if(actual -> info == 'o'){
+        avanzar();
+        if(actual -> info == ':'){
+            avanzar();
+        } else {
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba ':'\n",ubicacion);
+        }
+        listaP();
+    }else if(actual -> info == '}'){
+        return;
+    } else {
+        fprintf(erroresSintacticos,"ERROR(%d): Se esperaba 'other' o '}'\n",ubicacion);
+    }
+    return;
 }
 
 void U(){
+    if(actual -> info == 'q'){
+        avanzar();
+    } else if(actual -> info == '}' || actual -> info == 'a' || actual -> info == 'o'){
+        return;
+    }else{
+        fprintf(erroresSintacticos,"ERROR(%d): Se esperaba 'stop', 'case', 'other' o '}'\n",ubicacion);
+    }
+    return;
     
 }
 
 void Devuelve(){
-    
+    if(actual -> info == 'z'){
+        avanzar();
+        
+        if(actual -> info == '('){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un '('\n",ubicacion);
+        }
+        
+        valor();
+        
+        if(actual -> info == ')'){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un ')'\n",ubicacion);
+        }
+
+        if(actual -> info == ';'){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un ';'\n",ubicacion);
+        }
+    }else{
+        fprointf(erroresSintacticos,"ERROR(%d): Se esperaba 'throw'\n",ubicacion);
+    }
+    return;
 }
 
 void valor(){
-    
+    if(actual -> info == 'i' || actual -> info == 'n' || actual -> info == 'r' || actual -> info == 's'){
+        V();
+    }else if(actual -> info == ')'){
+        return;
+    }else{
+        fprintf(erroresSintacticos,"ERROR(%d): Se esperaba una expresion o un )\n",ubicacion);
+    }
+    return;
 }
 
 void Llama(){
-    
+    if(actual -> info == '['){
+        avanzar();
+        
+        if(actual -> info == 'i'){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un identificador\n",ubicacion);
+        }
+        
+        if(actual -> info == '('){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un '('\n",ubicacion);
+        }
+        
+        arg();
+
+        if(actual -> info == ')'){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un ')'\n",ubicacion);
+        }
+
+        if(actual -> info == ']'){
+            avanzar();
+        }else{
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un ']'\n",ubicacion);
+        }
+    }else{
+        fprintf(erroresSintacticos,"ERROR(%d): Se esperaba la llamada a una función\n",ubicacion);
+    } 
+
+    return;
 }
 
 void arg(){
-    
+    if(actual -> info == ')'){
+        return;
+    }else if(actual -> info == 'i' || actual -> info == 'n' || actual -> info == 'r' || actual -> info == 's'){
+        V();
+        otroArg();
+    }else{
+        fprintf(erroresSintacticos,"ERROR(%d): Se esperaba un identificador, numero, real cadena o ')'\n",ubicacion);
+    }
+    return;
 }
 
 void otroArg(){
-    
+    if(actual -> info == ','){
+        V();
+        otroArg();
+    }else if(actual -> info == ')'){
+        return;
+    }else{
+        fprintf(erroresSintacticos,"ERROR(%d): Se esperaba ')' o ',' \n",ubicacion);
+    }
+    return;
 }
