@@ -355,9 +355,10 @@ int agregar_lista_atomos(ListaAtomos *la, char atomo){
     if(la == NULL){
         return -1;
     }
-
+    
     NodoAtomo *nuevoNodo = nuevo_nodo_atomo(atomo);
-
+    la->tamanio++;
+    
     if(la->head == NULL){
         la->head = nuevoNodo;
         la->tail = nuevoNodo;

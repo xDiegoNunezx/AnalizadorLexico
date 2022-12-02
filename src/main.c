@@ -15,8 +15,6 @@ las tablas de símbolos al terminar.
 #include "lex.yy.h"
 #include "tablas.h"
 #include "tokens.h"
-#include <stdio.h>
-
 
 int main(int argc, char *argv[]){
     FILE *archivoEntrada = NULL;
@@ -37,6 +35,7 @@ int main(int argc, char *argv[]){
     ListaTokens *lt = nueva_lista_tokens();
     analizadorLexico(archivoEntrada, tr, tc, ti, lt);
     ListaAtomos *la = nueva_lista_atomos(lt);
+    analizadorSintactico(la, archivoSalida);
     fprintf(archivoSalida, "===Cadena de atomos=== \n");
     imprimir_lista_atomos(la, archivoSalida);
     fprintf(archivoSalida, "===Tabla de reales=== \n");
