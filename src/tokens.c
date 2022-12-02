@@ -18,11 +18,9 @@ const char *palabrasReservadas[17] = {"alternative", "big", "evaluate",
         "instead", "large", "loop", "make", "number", "other", "real",
         "repeat", "select", "small", "step", "stop", "symbol", "throw"};
 
-const char *atomosPalabrasR[17] = {'a', 'b', 'f', 't', 'g', 'w', 'm',
-'#', 'o','x','j','h','p','c','q','y','z'};
-const char *atomosOpRel[6] = {'<','>','l','u','e','d'};
+const char atomosPalabrasR[17] = {'a', 'b', 'f', 't', 'g', 'w', 'm','#', 'o','x','j','h','p','c','q','y','z'};
+const char atomosOpRel[6] = {'<','>','l','u','e','d'};
 const char *TablaOperadoresA[7] = {"+","-","*","/","%","\\","^"};
-
 const char *TablaOperadoresR[6] = {"<",">","<=",">=","==","!="};
 
 
@@ -343,28 +341,84 @@ int nuevo_token_asignacion(ListaTokens *lt){
 }
 
 //Atomos
+NodoAtomo *nuevo_nodo_atomo(char atomo){
+    NodoAtomo *nuevoNodo = (NodoAtomo*)malloc(sizeof(NodoAtomo));
+    if(nuevoNodo == NULL){
+        return NULL;
+    }
+    nuevoNodo->info = atomo;
+    nuevoNodo->next = NULL;
+    return nuevoNodo;
+}
+
+int agregar_lista_atomos(ListaAtomos *la, char atomo){
+    if(la == NULL){
+        return -1;
+    }
+
+    NodoAtomo *nuevoNodo = nuevo_nodo_atomo(atomo);
+
+    if(la->head == NULL){
+        la->head = nuevoNodo;
+        la->tail = nuevoNodo;
+        return 0;
+    }
+
+    la->tail->next = nuevoNodo;
+    la->tail = nuevoNodo;
+    return 0;
+}
+
+
 ListaAtomos *nueva_lista_atomos(ListaTokens *lt){
     NodoToken *actual = lt->head;
+    ListaAtomos* la = (ListaAtomos*)malloc(sizeof(ListaAtomos));
+    la->head = NULL;
+    la->tail = NULL;
+    la->tamanio = 0;
+
     while(actual != NULL){
         switch(actual -> info -> clase){
             case 0:
+                agregar_lista_atomos(la, atomosPalabrasR[actual -> info -> valor]);
             break;
             case 1:    
+                agregar_lista_atomos(la,'i');
             break;                    
             case 2:
+                agregar_lista_atomos(la,'n');
             break;
             case 3:
+                agregar_lista_atomos(la,'r');
             break;
             case 4:
+                agregar_lista_atomos(la,'s');
             break;
             case 5:
+                agregar_lista_atomos(la, actual -> info -> valor);
+            break;
+            case 6:
+                agregar_lista_atomos(la, actual -> info -> valor);
             break;
             case 7:
+                agregar_lista_atomos(la, atomosOpRel[actual -> info -> valor]);
             break;
             case 8:
+                agregar_lista_atomos(la,'=');
             break;
             default:
                 return NULL;
         }
+        actual = actual->next;
     }
+    return la;
+}
+
+void imprimir_lista_atomos(ListaAtomos *la, FILE *archivoSalida){
+    NodoAtomo *nodoActual = la -> head;
+    while(nodoActual){
+        fprintf(archivoSalida, "%c\n", nodoActual->info);
+        nodoActual = nodoActual->next;
+    }
+    fprintf(archivoSalida, "\n");
 }

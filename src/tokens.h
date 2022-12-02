@@ -60,4 +60,5 @@ int nuevo_token_operadorR(ListaTokens *lt, char *cadena);
 int nuevo_token_asignacion(ListaTokens *lt);
 void imprimir_lista_tokens(ListaTokens *lt, FILE* archivoSalida);
 ListaAtomos *nueva_lista_atomos(ListaTokens *lt);
+void imprimir_lista_atomos(ListaAtomos *la, FILE *archivoSalida);
 #endif

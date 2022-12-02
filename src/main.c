@@ -36,6 +36,9 @@ int main(int argc, char *argv[]){
     TablaIdentificadores *ti = nueva_tabla_indentificadores();
     ListaTokens *lt = nueva_lista_tokens();
     analizadorLexico(archivoEntrada, tr, tc, ti, lt);
+    ListaAtomos *la = nueva_lista_atomos(lt);
+    fprintf(archivoSalida, "===Cadena de atomos=== \n");
+    imprimir_lista_atomos(la, archivoSalida);
     fprintf(archivoSalida, "===Tabla de reales=== \n");
     imprimir_tabla(tr, archivoSalida);
     fprintf(archivoSalida, "===Tabla de cadenas=== \n");
