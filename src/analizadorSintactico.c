@@ -334,19 +334,50 @@ void VP(){
 }
 
 void VPP(){
-    
+    if(actual->info=='i'||actual->info=='r'){
+        avanzar();
+    } else {
+        fprintf(erroresSintacticos,"ERROR(%d): Se esperaba identificador o constante numerica\n",ubicacion);
+    }
 }
 
 void VPPP(){
-    
+    if(actual->info=='i'||actual->info=='s'){
+        avanzar();
+    } else {
+        fprintf(erroresSintacticos,"ERROR(%d): Se esperaba identificador o cadena\n",ubicacion);
+    }
 }
 
 void P(){
-    
+    if(actual->info=='i'){
+        A();
+    } else if(actual->info=='f'){
+        I();
+    } else if(actual->info=='h'){
+        H();
+    } else if(actual->info=='w'){
+        W();
+    } else if(actual->info=='j'){
+        J();
+    } else if(actual->info=='['){
+        Llama();
+    } else if(actual->info=='z'){
+        Devuelve();
+    } else if(actual->info=='c'){
+        avanzar();
+        if(actual->info==';'){
+            avanzar();
+        } else {
+            fprintf(erroresSintacticos,"ERROR(%d): Se esperaba ;\n",ubicacion);
+        }
+    } else {
+        fprintf(erroresSintacticos,"ERROR(%d): Proposicion incorrecta\n",ubicacion);
+    }
 }
 
 void listaP(){
-    
+
 }
 
 void W(){
