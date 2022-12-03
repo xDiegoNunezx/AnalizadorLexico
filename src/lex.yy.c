@@ -1,6 +1,5 @@
-#line 1 "./src/lex.yy.c"
 
-#line 3 "./src/lex.yy.c"
+#line 3 "lex.yy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -258,8 +257,8 @@ static YY_BUFFER_STATE * yy_buffer_stack = NULL; /**< Stack as an array. */
  * Returns the top of the stack, or NULL.
  */
 #define YY_CURRENT_BUFFER ( (yy_buffer_stack) \
-                    	? (yy_buffer_stack)[(yy_buffer_stack_top)] \
-                        : NULL)
+                          ? (yy_buffer_stack)[(yy_buffer_stack_top)] \
+                          : NULL)
 /* Same as previous macro, but useful when we know that the buffer stack is not
  * NULL or when we need an lvalue. For internal use only.
  */
@@ -519,8 +518,8 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "./src/analizadorLexico.l"
-#line 2 "./src/analizadorLexico.l"
+#line 1 "analizadorLexico.l"
+#line 2 "analizadorLexico.l"
 /*
 Autores: Ricardo López Becerra, Diego Ignacio Nuñez Hernández
 Fecha de creación: 29/10/2022
@@ -545,8 +544,8 @@ static ListaTokens *listaT;
 void realEncontrado(char *cadena, int tam);
 void cadenaEncontrada(char *cadena, int tam);
 void identificadorEncontrado(char *cadena);
-#line 548 "./src/lex.yy.c"
-#line 549 "./src/lex.yy.c"
+#line 548 "lex.yy.c"
+#line 549 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -763,9 +762,9 @@ YY_DECL
 		}
 
 	{
-#line 44 "./src/analizadorLexico.l"
+#line 44 "analizadorLexico.l"
 
-#line 768 "./src/lex.yy.c"
+#line 768 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -824,86 +823,86 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 45 "./src/analizadorLexico.l"
+#line 45 "analizadorLexico.l"
 
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 46 "./src/analizadorLexico.l"
+#line 46 "analizadorLexico.l"
 
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 47 "./src/analizadorLexico.l"
+#line 47 "analizadorLexico.l"
 fprintf(archSal,"%s es un error, no se reconoce\n", yytext);
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 48 "./src/analizadorLexico.l"
+#line 48 "analizadorLexico.l"
 nuevo_token_pal_res(listaT, yytext);       
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 49 "./src/analizadorLexico.l"
+#line 49 "analizadorLexico.l"
 nuevo_token_ident(listaT, tablaI, yytext);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 50 "./src/analizadorLexico.l"
+#line 50 "analizadorLexico.l"
 nuevo_token_real(listaT, tablaR, yytext);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 51 "./src/analizadorLexico.l"
+#line 51 "analizadorLexico.l"
 nuevo_token_decimal(listaT, yytext);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 52 "./src/analizadorLexico.l"
+#line 52 "analizadorLexico.l"
 nuevo_token_octal(listaT, yytext);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 53 "./src/analizadorLexico.l"
+#line 53 "analizadorLexico.l"
 nuevo_token_cadena(listaT, tablaC, yytext);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 54 "./src/analizadorLexico.l"
+#line 54 "analizadorLexico.l"
 nuevo_token_simbolo(listaT, yytext);
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 55 "./src/analizadorLexico.l"
+#line 55 "analizadorLexico.l"
 nuevo_token_operadorA(listaT, yytext);
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 56 "./src/analizadorLexico.l"
+#line 56 "analizadorLexico.l"
 nuevo_token_operadorR(listaT, yytext);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 57 "./src/analizadorLexico.l"
+#line 57 "analizadorLexico.l"
 nuevo_token_asignacion(listaT);
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 58 "./src/analizadorLexico.l"
+#line 58 "analizadorLexico.l"
 fprintf(archSal,"%s es un error, no se reconoce\n", yytext);
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 59 "./src/analizadorLexico.l"
+#line 59 "analizadorLexico.l"
 fprintf(archSal,"%s es un error, no se reconoce\n", yytext);
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 60 "./src/analizadorLexico.l"
+#line 60 "analizadorLexico.l"
 ECHO;
 	YY_BREAK
-#line 906 "./src/lex.yy.c"
+#line 906 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1626,8 +1625,8 @@ YY_BUFFER_STATE yy_scan_buffer  (char * base, yy_size_t  size )
 	YY_BUFFER_STATE b;
     
 	if ( size < 2 ||
-		base[size-2] != YY_END_OF_BUFFER_CHAR ||
-		base[size-1] != YY_END_OF_BUFFER_CHAR )
+	     base[size-2] != YY_END_OF_BUFFER_CHAR ||
+	     base[size-1] != YY_END_OF_BUFFER_CHAR )
 		/* They forgot to leave room for the EOB's. */
 		return NULL;
 
@@ -1908,7 +1907,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 60 "./src/analizadorLexico.l"
+#line 60 "analizadorLexico.l"
 
 
 /*

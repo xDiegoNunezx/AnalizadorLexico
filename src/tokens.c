@@ -340,7 +340,10 @@ int nuevo_token_asignacion(ListaTokens *lt){
     return 0;
 }
 
-//Atomos
+/*
+    Crea un nuevo nodo de tipo nodoToken y lo inicializa con el caracter pasado como parámetro.
+    atomo: Caracter a insertar en el nodo.
+*/
 NodoAtomo *nuevo_nodo_atomo(char atomo){
     NodoAtomo *nuevoNodo = (NodoAtomo*)malloc(sizeof(NodoAtomo));
     if(nuevoNodo == NULL){
@@ -350,7 +353,11 @@ NodoAtomo *nuevo_nodo_atomo(char atomo){
     nuevoNodo->next = NULL;
     return nuevoNodo;
 }
-
+/*
+    Agrerga a una lista de átomos un nuevo nodo con el caracter pasado como parámetro.
+    la: Lista donde agregar el nuevo nodo.
+    atomo: Caracter a insertar en el nodo.
+*/
 int agregar_lista_atomos(ListaAtomos *la, char atomo){
     if(la == NULL){
         return -1;
@@ -369,7 +376,10 @@ int agregar_lista_atomos(ListaAtomos *la, char atomo){
     la->tail = nuevoNodo;
     return 0;
 }
-
+/*
+    Crea una nueva lista de átomos y la inicializa.
+    lt: Lista de tokens a partir de la cual se creará la lista de átomos.
+*/
 
 ListaAtomos *nueva_lista_atomos(ListaTokens *lt){
     NodoToken *actual = lt->head;
@@ -415,7 +425,11 @@ ListaAtomos *nueva_lista_atomos(ListaTokens *lt){
     return la;
 }
 
-
+/*
+    Imprime la lista de átomos.
+    la: Lista de átomos a imprimir.
+    archivoSalida: Archivo donde se imprimirá la lista de átomos.
+*/
 void imprimir_lista_atomos(ListaAtomos *la, FILE *archivoSalida){
     NodoAtomo *nodoActual = la -> head;
     int i = 0;
