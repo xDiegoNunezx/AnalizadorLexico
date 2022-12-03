@@ -1,6 +1,14 @@
+/*
+Autores: Ricardo López Becerra, Diego Ignacio Nuñez Hernández
+Fecha de creación: 1/12/2022
+
+En este archivo se define el analizador Sintáctico Descendente Recursivo.
+*/
+
 #include <stdio.h>
 #include "tokens.h"
 
+//Prototipos de las funciones
 void avanzar();
 void analizadorSintactico(ListaAtomos* la, FILE *archivoSalida);
 void Program();
@@ -48,12 +56,17 @@ void Llama();
 void arg();
 void otroArg();
 
-
-
-
+// Variables globales
 NodoAtomo* actual;
 int ubicacion;
 FILE *erroresSintacticos;
+
+/*
+    Función en donde se manda a llamar a la fucnión del símbolo inicial de la gramática y
+    se inicializa el apuntador a la lista de átomos y el archivo de errores.
+    Si el apuntador llega al final de la lista (es nulo) significa que no hay errores
+    sintácticos.
+*/
 void analizadorSintactico(ListaAtomos* la, FILE *archivoSalida){
     erroresSintacticos = fopen("erroresSintacticos.txt", "w");
     actual = la->head;
@@ -65,12 +78,17 @@ void analizadorSintactico(ListaAtomos* la, FILE *archivoSalida){
         fprintf(archivoSalida,"EL ARCHIVO ES SINTACTICAMENTE INCORRECTO\n");
     }
 }
-//LIMPIARMEMORIA
+
+/*
+    Función que apunta al nodo siguiente de la lista de átomos e
+    incrementa la ubicacion.
+*/
 void avanzar(){
     actual=actual->next;
     ubicacion++;
 }
 
+// Funciones de los no-terminales de la gramática 
 void Program(){
     if(actual->info=='b'||actual->info=='g'||actual->info=='#'||actual->info=='y'||actual->info=='x'){
         Func();
