@@ -415,11 +415,15 @@ ListaAtomos *nueva_lista_atomos(ListaTokens *lt){
     return la;
 }
 
+
 void imprimir_lista_atomos(ListaAtomos *la, FILE *archivoSalida){
     NodoAtomo *nodoActual = la -> head;
+    int i = 0;
+    fprintf(archivoSalida, "Número de átomo | Átomo\n");
     while(nodoActual){
-        fprintf(archivoSalida, "%c\n", nodoActual->info);
+        fprintf(archivoSalida, "%d: %c\n", i, nodoActual->info);
         nodoActual = nodoActual->next;
+        i++;
     }
     fprintf(archivoSalida, "\n");
 }
