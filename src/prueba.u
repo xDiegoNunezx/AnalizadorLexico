@@ -1,0 +1,71 @@
+symbol  $funUno( )
+{
+    
+    real  $NumReal=27.5, $OtroReal;
+    symbol $cadUno,$cadDos= "Cadena #2";
+    big $numUno=5, $numDos, $num;
+    big $hola = "perro";
+
+    $t = 34*$cadUno/4.5^$y\6%[$fun()];
+
+    evaluate($num >= $num)
+    :
+
+     evaluate($NumReal>=28.5)
+            loop( $numUno==20) make
+            {
+            }
+
+            loop($numUno>20) make
+            {
+            }
+
+            loop( $numUno<20) make
+            {
+            }
+
+
+            loop( $numUno<=20) make
+            {
+                $numUno=$numUno+3\4;
+                $numDos= (3+$numUno)^2;        evaluate ($numDos> 200)
+                    step;
+                :
+             }
+             $cadUno= "Una cadena diferente…";
+     :
+     repeat ($num=2;$num<=10; $num=$num+1)
+     {
+            [$funDos($num)]
+     }
+     evaluate ($cadUno==$cadDos)
+            throw("iguales!");
+     instead
+            throw("diferentes!");
+     :
+}
+
+number  $funDos(big $Num)
+{
+     symbol  $cadResult;
+     number $valor;
+
+     select($Num)
+     {
+          alternative 2:
+          alternative 3:
+          alternative 4: $cadResult="rango de 2 a 4";
+                                   stop
+          alternative 5:
+          alternative 6:
+          alternative 7: $cadResult="rango de 5 a 7";
+                                   stop
+          alternative 8:
+          alternative 9:
+          alternative 10: $cadResult="rango de 8 a 10";
+                                   stop
+          other: $cadResult="fuera de rango";
+    }
+    $valor= $Num*7.5%9-$Num;
+    throw($valor);
+}
